@@ -1,6 +1,6 @@
 package hr.tvz.project.gym.repository;
 
-import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	public User getUserById(long userID);
 
-	public List<User> findByUsernameAndDeletedFalse(String username);
+	Optional<User> findByUsernameAndDeletedFalse(String username);
 
 	public boolean existsByUsernameAndDeletedFalse(String username);
 	

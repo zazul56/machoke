@@ -6,10 +6,12 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import hr.tvz.project.gym.exception.FieldNotFoundException;
@@ -19,16 +21,14 @@ import hr.tvz.project.gym.service.RoleService;
 import hr.tvz.project.gym.service.UserService;
 
 @RestController
+@RequestMapping("/api")
 public class UserController {
-
 	
 	private UserService userService;
-	private RoleService roleService;
 	private MessageSource messageSource;
 	
 	public UserController(UserService userService, RoleService roleService, MessageSource messageSource) {
 		this.userService = userService;
-		this.roleService = roleService;
 		this.messageSource = messageSource;
 	}
 	
@@ -51,6 +51,7 @@ public class UserController {
 
 	
 	@PostMapping("/users")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	ResponseEntity<String> newUser(@RequestBody User newUser) {
 		ResponseEntity<String> respEnt = null;
 		try {

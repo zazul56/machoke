@@ -1,6 +1,8 @@
 package hr.tvz.project.gym.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -89,7 +91,9 @@ public class UserService {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
 		Role role = roleService.getRoleById(GymConstants.ROLE_USER_ID);
-		user.setRole(role);
+		Set<Role> roles = new HashSet<>();
+		roles.add(role);
+		user.setRoles(roles);
 		
 		user = userRepository.save(user);
 		
