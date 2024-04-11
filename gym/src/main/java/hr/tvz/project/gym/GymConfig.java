@@ -6,8 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
+import java.util.Arrays;
 import java.util.Locale;
 
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
@@ -48,7 +51,19 @@ public class GymConfig{
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    	 // Define the CORS configuration
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.setAllowedOrigins(Arrays.asList("http://localhost:3000")); // Specify the allowed origin
+        corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS")); // Allowed methods
+        corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type")); // Allowed headers
+        corsConfig.setAllowCredentials(true); // This allows session cookie to be sent back and forth
+        corsConfig.setMaxAge(3600L); // How long the results of a preflight request can be cached
+        
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfig); // Apply CORS configuration to all paths
+        
         http
+            .cors(cors -> cors.configurationSource(source)) // Apply the CORS configuration
             .authorizeHttpRequests((authz) -> authz
             		.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                     .requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
@@ -56,9 +71,9 @@ public class GymConfig{
             )
             .csrf((csrf) -> csrf.disable());
         
-        	// Add our custom JWT security filter
-        	http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-    
+        // Add our custom JWT security filter
+        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
     
