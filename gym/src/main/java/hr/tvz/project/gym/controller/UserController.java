@@ -80,4 +80,36 @@ public class UserController {
 		return respEnt;
 	}
 	
+	@PostMapping("/users/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody User existingUser){
+		ResponseEntity<String> respEnt = null;
+		try {
+			existingUser.setId(id);
+			userService.update(existingUser);
+			respEnt = ResponseEntity.ok(messageSource.getMessage("data.user.updated.success", null, LocaleContextHolder.getLocale()));
+		} catch (NoSuchMessageException e) {
+			e.printStackTrace();
+		} catch (NotUniqueFieldException e) {
+			e.printStackTrace();
+			respEnt = ResponseEntity.ok(e.getMessage());
+		}
+		
+		return respEnt;
+	}
+	
+	@PostMapping("/users/delete/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	ResponseEntity<String> deleteUser(@PathVariable Long id){
+		ResponseEntity<String> respEnt = null;
+		try {
+			userService.deleteByID(id);
+			respEnt = ResponseEntity.ok(messageSource.getMessage("data.user.deleted.success", null, LocaleContextHolder.getLocale()));
+		} catch (NoSuchMessageException e) {
+			e.printStackTrace();
+		}
+		
+		return respEnt;
+	}
+	
 }

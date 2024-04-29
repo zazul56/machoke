@@ -7,4 +7,5 @@ import hr.tvz.project.gym.model.Role;
 public interface RoleRepository extends JpaRepository<Role, Long>{
 
 	public Role getRoleById(long roleID);
+	public Role getRoleByName(String roleName);
 }

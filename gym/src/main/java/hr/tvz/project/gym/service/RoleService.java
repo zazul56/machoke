@@ -22,4 +22,8 @@ public class RoleService {
 		return roleRepository.getRoleById(roleID);
 	}
 	
+	public Role getRoleByName(String roleName) {
+		return roleRepository.getRoleByName(roleName);
+	}
+	
 }

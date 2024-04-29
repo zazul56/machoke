@@ -17,6 +17,7 @@ import hr.tvz.project.gym.exception.FieldNotFoundException;
 import hr.tvz.project.gym.exception.NotUniqueFieldException;
 import hr.tvz.project.gym.model.Role;
 import hr.tvz.project.gym.model.User;
+import hr.tvz.project.gym.repository.RoleRepository;
 import hr.tvz.project.gym.repository.UserRepository;
 import hr.tvz.project.gym.utils.GymConstants;
 import jakarta.persistence.TypedQuery;
@@ -112,6 +113,22 @@ public class UserService {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
 		
+		// role
+		Set<Role> roles = user.getRoles();
+		if(roles != null) {
+			for(Role r : roles) {
+				if(r.getName() == null) {
+					r = roleService.getRoleById(r.getId());
+				}
+				if(r.getId() == null) {
+					r = roleService.getRoleByName(r.getName());
+				}
+				roles.clear();
+				roles.add(r);
+			}
+		}
+		user.setRoles(roles);
+		
 		user = userRepository.save(user);
 		
 		return user;
@@ -124,7 +141,10 @@ public class UserService {
 
 	public void deleteByID(Long ID) {
 		User user = getUserById(ID);
-		userRepository.delete(user);
+		//soft delete for now
+		user.setDeleted(true);
+		userRepository.save(user);
+		//userRepository.delete(user);
 	}
 
 	public List<User> findAllUsers() {
@@ -138,4 +158,5 @@ public class UserService {
 		}
 		return null;
 	}
+
 }
