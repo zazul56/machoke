@@ -130,4 +130,12 @@ public class UserService {
 	public List<User> findAllUsers() {
 		return userRepository.findAll();
 	}
+
+	public Role getUserRoleByUsername(String username) {
+		User user = userRepository.findByUsernameAndDeletedIsFalse(username);
+		for(Role r:user.getRoles()) {
+			return r;
+		}
+		return null;
+	}
 }

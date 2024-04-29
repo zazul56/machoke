@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hr.tvz.project.gym.exception.FieldNotFoundException;
 import hr.tvz.project.gym.exception.NotUniqueFieldException;
+import hr.tvz.project.gym.model.Role;
 import hr.tvz.project.gym.model.User;
 import hr.tvz.project.gym.service.RoleService;
 import hr.tvz.project.gym.service.UserService;
@@ -43,8 +44,17 @@ public class UserController {
 		User user = userService.getUserById(id);
 		if (user != null) {
 			return ResponseEntity.ok(user);
+		} else {
+			return ResponseEntity.notFound().build();
 		}
-		else {
+	}
+	
+	@GetMapping("/users/role/{username}")
+	public ResponseEntity<Role> getUserRoleByUsername(@PathVariable String username){
+		Role role = userService.getUserRoleByUsername(username);
+		if(role != null) {
+			return ResponseEntity.ok(role);
+		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
