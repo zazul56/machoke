@@ -1,17 +1,41 @@
+* {
+  background-color: black;
+  color:white;
+}
+
+.main-container{
+  margin:0 2.5rem;
+}
+
+.mach-logo {
+  width: 60px;
+}
+
+.logo{
+  position:relative;
+  left: 3rem;
+  top:1rem;
+  text-align: center; /* Aligns the content to the center */
+}
+
+
+
+.logo-text {
+  font-size: 1.3rem;
+  margin-top:0rem;
+  letter-spacing: 0.5px;
+  background: linear-gradient(45deg, #a1f2fd 0%, #fbc2f1 100%); /* Adjust the colors to your desired gradient */
+  -webkit-background-clip: text;
+  background-clip: text;/*ako nije chrome ili safari*/
+  color: transparent;
+  font-weight:bold;
+}
+
+/* ne koristi se */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
 
 .App-header {
   background-color: #282c34;
@@ -24,15 +48,118 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+
+
+
+
+/*navbar*/
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: inline;
+  padding: 1rem;
+
+}
+
+li a {
+
+  text-align: center;
+  padding: 1rem;
+  text-decoration: none;
+  color:white
+}
+
+
+li a:hover {
+  background-color: #111;
+}
+
+
+.rows-container{
+  display: flex;
+  justify-content: space-between;
+
+}
+
+h2{
+  text-align: center;
+}
+
+.textSection{
+  font-size: 1.25rem;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/*imgs*/
+
+.lifting-weights{
+  width: 100%;
+}
+
+.main-banner{
+  width:30%;
+}
+
+.text-container{
+  color:#ffffff;
+  font-family: 'Arial', sans-serif; 
+  max-width:35%;
+}
+
+.text-container h1 {
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.text-container p {
+  font-size: 1.4rem; /* Font size for the paragraph */
+  margin-bottom: 1rem; /* Space between the paragraph and the button */
+}
+
+.signup-button{
+  background-color: #e53e3e;
+  color:white;
+  padding:1rem 3rem;
+  font-size:1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  letter-spacing: 1px;
+  transition: background-color 0.3s ease;
+}
+
+
+.signup-button:hover {
+  background-color: #c53030; 
+}
+
+
+/* about us*/
+
+.about-text {
+  max-width: 40%;
+  color:#ffffff;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.about-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
