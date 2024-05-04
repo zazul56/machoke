@@ -24,7 +24,7 @@ const Navbar = () => {
             </li>
             <li>
               <NavLink to="/contact">Kontakt</NavLink>
-            </li>
+            </li> 
             {userRole === "ROLE_ADMIN" && (
               <li>
                 <NavLink to="/users">Korisnici</NavLink>
