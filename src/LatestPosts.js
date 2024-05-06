@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getRequestFetchingLogic } from "./getRequestFetchingLogic";
+import { getRequestFetchingLogic } from "./Api";
 import Post from "./Post";
 
 const LatestPosts = () => {

@@ -1,8 +1,5 @@
 import { useState } from "react";
-import {
-  getRequestFetchingLogic,
-  fetchRequestLogin,
-} from "../../getRequestFetchingLogic";
+import { getRequestFetchingLogic, fetchRequestLogin } from "../../Api";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../Auth/AuthProvider";
 

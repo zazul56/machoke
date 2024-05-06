@@ -8,6 +8,7 @@ import Home from "./Pages/Home/Home";
 import Signup from "./Pages/SignUp/SignUp";
 import AuthProvider from "./Auth/AuthProvider";
 import Users from "./Pages/Users/Users";
+import Forum from "./Pages/Forum/Forum";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/forum" element={<Forum />} />
           </Routes>
         </MainContainer>
       </AuthProvider>

@@ -1,4 +1,4 @@
-import { fetchRequest } from "../../getRequestFetchingLogic";
+import { fetchRequest } from "../../Api";
 
 const Signup = ({ passedUserDetails, isEdit, isAdd }) => {
   const handleSubmit = async (e) => {

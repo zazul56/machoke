@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  fetchRequest,
-  getRequestFetchingLogic,
-} from "../../getRequestFetchingLogic";
+import { fetchRequest, getRequestFetchingLogic } from "../../Api";
 import "./users.css";
 import Signup from "../SignUp/SignUp";
 const Users = () => {
