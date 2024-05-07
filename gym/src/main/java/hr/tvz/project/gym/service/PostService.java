@@ -59,7 +59,7 @@ public class PostService {
 			throw new FieldNotFoundException(msgSrc.getMessage("warning.data.post.field.not.found.mandatory", new String[] {"content"}, LocaleContextHolder.getLocale()));
 		}
 		
-		if(newPost.getQuestionId() == 0) {
+		if(newPost.getQuestionId() == null || newPost.getQuestionId() == 0) {
 			throw new FieldNotFoundException(msgSrc.getMessage("warning.data.post.field.not.found.mandatory",  new String[] {"question_id"}, LocaleContextHolder.getLocale()));
 		}
 		
