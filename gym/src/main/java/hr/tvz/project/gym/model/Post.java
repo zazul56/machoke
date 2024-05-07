@@ -2,6 +2,7 @@ package hr.tvz.project.gym.model;
 
 import java.sql.Timestamp;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -28,5 +29,6 @@ public class Post {
     @JoinColumn(name = "user_id")
 	private User user;
 	
-	private Long question_id;
+	@Column(name="question_id")
+	private Long questionId;
 }

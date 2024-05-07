@@ -24,7 +24,7 @@ public class QuestionService {
 	
 
 	public Question getQuestionById(long que_id) {
-		return questionRepository.getReferenceById(que_id);
+		return questionRepository.getQuestionById(que_id);
 	}
 
 

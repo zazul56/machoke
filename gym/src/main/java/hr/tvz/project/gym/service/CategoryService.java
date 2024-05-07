@@ -24,7 +24,7 @@ public class CategoryService {
 	
 
 	public Category getCategoryById(long cat_id) {
-		return catRepository.getReferenceById(cat_id);
+		return catRepository.getCategoryById(cat_id);
 	}
 
 

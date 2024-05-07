@@ -6,5 +6,7 @@ import hr.tvz.project.gym.model.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long> {
 
+	public Category getCategoryById(long cat_id);
+
 	
 }
