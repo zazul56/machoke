@@ -10,5 +10,6 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 	List<Post> findByQuestionIdAndDeletedFalse(Long id);
 
+	Post getPostById(long pos_id);
 	
 }

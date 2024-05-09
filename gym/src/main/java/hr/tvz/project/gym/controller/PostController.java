@@ -30,7 +30,6 @@ public class PostController {
 		this.messageSource = messageSource;
 	}
 	
-	
 	@GetMapping("/posts")
 	List<Post> all() {
 		return postService.findAllPosts();
@@ -53,6 +52,20 @@ public class PostController {
 		} catch (FieldNotFoundException e) {
 			e.printStackTrace();
 			respEnt = ResponseEntity.ok(e.getMessage());
+		}
+		
+		return respEnt;
+	}
+	
+	@PostMapping("/posts/delete/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	ResponseEntity<String> deletePost(@PathVariable Long id){
+		ResponseEntity<String> respEnt = null;
+		try {
+			postService.deleteByID(id);
+			respEnt = ResponseEntity.ok(messageSource.getMessage("data.post.deleted.success", null, LocaleContextHolder.getLocale()));
+		} catch (NoSuchMessageException e) {
+			e.printStackTrace();
 		}
 		
 		return respEnt;

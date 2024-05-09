@@ -17,7 +17,6 @@ import hr.tvz.project.gym.exception.FieldNotFoundException;
 import hr.tvz.project.gym.exception.NotUniqueFieldException;
 import hr.tvz.project.gym.model.Role;
 import hr.tvz.project.gym.model.User;
-import hr.tvz.project.gym.repository.RoleRepository;
 import hr.tvz.project.gym.repository.UserRepository;
 import hr.tvz.project.gym.utils.GymConstants;
 import jakarta.persistence.TypedQuery;

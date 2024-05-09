@@ -31,11 +31,9 @@ public class PostService {
 	
 
 	public Post getPostById(long pos_id) {
-		return postRepository.getReferenceById(pos_id);
+		return postRepository.getPostById(pos_id);
 	}
 
-
-	//todo: by que_id
 	public List<Post> findAllPosts() {
 		return postRepository.findAll();
 	}
@@ -70,9 +68,15 @@ public class PostService {
 
 
 	public List<Post> findPostsByQuestionId(Long id) {
-		
-		List<Post> posts = postRepository.findByQuestionIdAndDeletedFalse(id);		
-		return posts;
+		return postRepository.findByQuestionIdAndDeletedFalse(id);
+	}
+
+
+	public void deleteByID(Long id) {
+		Post post = getPostById(id);
+		post.setDeleted(true);
+		postRepository.save(post);
+		//userRepository.delete(user);
 	}
 	
 
