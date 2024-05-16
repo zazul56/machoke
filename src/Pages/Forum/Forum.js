@@ -17,9 +17,7 @@ const Forum = () => {
     <div>
       <h1>Forum Categories</h1>
       {categories.map((category) => (
-        <Category key={category.id} category={category}>
-          baba {category.name}
-        </Category>
+        <Category key={category.id} category={category} />
       ))}
     </div>
   );

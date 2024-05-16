@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react";
-import { getRequestFetchingLogic } from "../../Api";
-import Question from "../Forum/Question";
+import { useNavigate } from "react-router-dom";
 
 const Category = ({ category }) => {
-  const [questions, setQuestions] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchQuestions = async () => {
-      const response = await getRequestFetchingLogic("/api/questions");
-      setQuestions(response.data);
-    };
+  const handleQuestionClick = () => {
+    navigate(`/forum/questions`);
+  };
 
-    fetchQuestions();
-  }, [category.id]);
-  //samo ako je category.id taj onda mi pokreni ovo etc...
   return (
     <div>
-      <h2>{category.name}</h2>
-      {questions.map((question) => (
-        <Question key={question.id} question={question} />
-      ))}
+      <h2 onClick={handleQuestionClick}>{category.name}</h2>
     </div>
   );
 };

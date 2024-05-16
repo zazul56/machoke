@@ -1,32 +1,34 @@
 import { useEffect, useState } from "react";
 import { getRequestFetchingLogic } from "../../Api";
-import Post from "../Forum/Post";
+import { useNavigate } from "react-router-dom";
 
-const Question = ({ question }) => {
-  const [posts, setPosts] = useState([]);
-  const [showPosts, setShowPosts] = useState(false);
+const Question = () => {
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    if (showPosts) {
-      const fetchPosts = async () => {
-        const response = await getRequestFetchingLogic("/api/posts");
-        setPosts(response.data);
-      };
+    const fetchQuestions = async () => {
+      const response = await getRequestFetchingLogic(`/api/questions`);
+      setQuestions(response);
+    };
 
-      fetchPosts();
-    }
-  }, [question.id, showPosts]);
+    fetchQuestions();
+  }, []);
+  //question.id, showPosts
+  const navigate = useNavigate();
+
+  const handlePostClick = (questionId) => {
+    navigate("/forum/posts", { state: { questionId } });
+  };
 
   return (
     <div>
-      <h3 onClick={() => setShowPosts(!showPosts)}>{question.q_text}</h3>
-      {showPosts && (
-        <div>
-          {posts.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-        </div>
-      )}
+      {questions.map((question) => {
+        return (
+          <div key={question.id} onClick={() => handlePostClick(question.id)}>
+            {question.q_text}
+          </div>
+        );
+      })}
     </div>
   );
 };

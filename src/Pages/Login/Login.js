@@ -25,7 +25,7 @@ const Login = () => {
         `/api/users/role/${credentials.username}`
       );
 
-      login(data.token, userRole);
+      login(data.token, userRole, credentials);
     } else {
       console.log("no token");
     }
