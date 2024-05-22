@@ -11,17 +11,21 @@ const Signup = ({ passedUserDetails, isEdit, isAdd }) => {
       username: formData.get("username"),
       email: formData.get("email"),
       password: formData.get("password"),
+      ...(isEdit && { roles: [{ roles: formData.get("role") }] }),
     };
-    let endpoint;
+
+    // if (isEdit) {
+    //   userDetails.phone = formData.get("phone");
+    // }
+
+    let endpoint = "/api/auth/register";
     if (isEdit) {
       endpoint = `/api/users/${passedUserDetails.id}`;
-      await fetchRequest(endpoint, userDetails);
-      //poziv za update
     } else if (isAdd) {
-      await fetchRequest("/api/users", userDetails);
-    } else {
-      await fetchRequest("/api/auth/register", userDetails);
+      endpoint = "/api/users";
     }
+
+    await fetchRequest(endpoint, userDetails);
 
     // console.log("data", data); //stp radi, s responsom? neka provera? ovo vise izgleda kao login xd
   };
@@ -67,7 +71,22 @@ const Signup = ({ passedUserDetails, isEdit, isAdd }) => {
         name="password"
         defaultValue={passedUserDetails ? passedUserDetails.password : ""}
       />
-
+      {isEdit && (
+        <div>
+          <label htmlFor="role">User Role:</label>
+          <select
+            id="role"
+            name="role"
+            defaultValue={
+              passedUserDetails ? passedUserDetails.roles[0].id : ""
+            }>
+            <option value="">Select a role</option>
+            <option value="1">Admin</option>
+            <option value="2">User</option>
+            <option value="3">Coach</option>
+          </select>
+        </div>
+      )}
       <button type="submit" className="signup-button">
         Upiši se
       </button>

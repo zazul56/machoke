@@ -11,7 +11,7 @@ import Users from "./Pages/Users/Users";
 import Forum from "./Pages/Forum/Forum";
 import Question from "./Pages/Forum/Question";
 import Post from "./Pages/Forum/Post";
-
+import Articles from "./Pages/Clanci/Articles";
 function App() {
   return (
     <BrowserRouter>
@@ -23,6 +23,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/users" element={<Users />} />
+            <Route path="/articles" component={Articles} />
             <Route path="/forum" element={<Forum />} />
             <Route path="/forum/questions" element={<Question />} />
             <Route path="/forum/posts" element={<Post />} />

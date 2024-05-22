@@ -30,9 +30,7 @@ const LatestPosts = () => {
       ) : error ? (
         <div> {error} </div>
       ) : (
-        posts.map((post) => {
-          <Post key={post.id} {...post}></Post>;
-        })
+        posts.map((post) => <Post key={post.id} {...post}></Post>)
       )}
     </div>
   );

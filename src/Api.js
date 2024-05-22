@@ -49,5 +49,25 @@ export const fetchRequest = async (url, options = {}) => {
     throw new Error(`HTTP error: Status ${response.status}`);
   }
   //error kod edita s ovim
+  console.log(response.json());
   return response.json();
+};
+
+export const fetchResponseRequest = async (url, options = {}) => {
+  const response = await fetch(localhost + url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(options),
+  });
+
+  console.log("response", response.json());
+
+  if (!response.ok) {
+    throw new Error(`HTTP error: Status ${response.status}`);
+  }
+
+  return response;
 };
